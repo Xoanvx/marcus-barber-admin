@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Marcus Barber</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Marcus Barber</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <div class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-item active">
+                            <a href="dashboard.html">
+                                <span class="icon">📊</span>
+                                <span class="text">Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Gestión</div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-item">
+                            <a href="products.html">
+                                <span class="icon">📦</span>
+                                <span class="text">Productos</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="orders.html">
+                                <span class="icon">🛒</span>
+                                <span class="text">Pedidos</span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="claims.html">
+                                <span class="icon">⚠️</span>
+                                <span class="text">Reclamos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="sidebar-footer-content">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <div class="name" id="sidebarUserName">Administrador</div>
+                        <div class="role">Admin</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                    <nav class="breadcrumb">
+                        <span>Dashboard</span>
+                    </nav>
+                </div>
+                
+                <div class="header-right">
+                    <button class="refresh-btn" id="refreshBtn">🔄</button>
+                    <div class="user-menu">
+                        <span class="user-name" id="userName">Administrador</span>
+                        <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="page-content">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                </div>
+                
+                <div class="dashboard-content">
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-info">
+                                <h3 id="totalProducts">0</h3>
+                                <p>Total Productos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">🛒</div>
+                            <div class="stat-info">
+                                <h3 id="totalOrders">0</h3>
+                                <p>Pedidos Totales</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">⚠️</div>
+                            <div class="stat-info">
+                                <h3 id="totalClaims">0</h3>
+                                <p>Reclamos Activos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-info">
+                                <h3 id="totalRevenue">$0</h3>
+                                <p>Ingresos del Mes</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Charts Section -->
+                    <div class="charts-section">
+                        <div class="chart-card">
+                            <h3>Ventas por Mes</h3>
+                            <div class="chart-container">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <h3>Productos por Categoría</h3>
+                            <div class="chart-container">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="activity-section">
+                        <div class="section-header">
+                            <h3>Actividad Reciente</h3>
+                            <button class="view-all-btn">Ver Todo</button>
+                        </div>
+                        
+                        <div class="activity-list" id="activityList">
+                            <!-- Activity items will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h3>Acciones Rápidas</h3>
+                        <div class="actions-grid">
+                            <button class="action-btn" onclick="window.location.href='products.html'">
+                                <span class="icon">➕</span>
+                                <span>Nuevo Producto</span>
+                            </button>
+                            <button class="action-btn" onclick="window.location.href='orders.html'">
+                                <span class="icon">📋</span>
+                                <span>Ver Pedidos</span>
+                            </button>
+                            <button class="action-btn" onclick="window.location.href='claims.html'">
+                                <span class="icon">🔍</span>
+                                <span>Revisar Reclamos</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div class="toast" id="toast"></div>
+    
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Dashboard specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            initializeCharts();
+            
+            // Set user name in sidebar
+            if (auth.isAuthenticated()) {
+                const user = auth.getUser();
+                const sidebarUserName = document.getElementById('sidebarUserName');
+                if (sidebarUserName) {
+                    sidebarUserName.textContent = user?.name || 'Administrador';
+                }
+            }
+        });
+        
+        async function loadDashboardData() {
+            try {
+                // Simulate API calls with mock data
+                const products = [
+                    { id: 1, nombre: 'Corte Clásico', categoria: 'CORTES', precio: 1500, stock: 0 },
+                    { id: 2, nombre: 'Shampoo Premium', categoria: 'PRODUCTOS', precio: 2500, stock: 15 }
+                ];
+                
+                const orders = [
+                    { id: 1, cliente: 'Juan Pérez', total: 3500, estado: 'PENDIENTE' },
+                    { id: 2, cliente: 'María García', total: 1500, estado: 'COMPLETADO' }
+                ];
+                
+                const claims = [
+                    { id: 1, cliente: 'Ana López', estado: 'PENDIENTE' },
+                    { id: 2, cliente: 'Carlos Ruiz', estado: 'EN_PROCESO' }
+                ];
+                
+                document.getElementById('totalProducts').textContent = products.length;
+                document.getElementById('totalOrders').textContent = orders.length;
+                document.getElementById('totalClaims').textContent = claims.filter(c => c.estado !== 'RESUELTO').length;
+                
+                // Calculate revenue
+                const revenue = orders.reduce((sum, order) => sum + (order.total || 0), 0);
+                document.getElementById('totalRevenue').textContent = formatCurrency(revenue);
+                
+                // Load recent activity
+                loadRecentActivity();
+                
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showToast('Error al cargar datos del dashboard', 'error');
+            }
+        }
+        
+        function loadRecentActivity() {
+            const activityList = document.getElementById('activityList');
+            const activities = [
+                { type: 'order', message: 'Nuevo pedido recibido de Juan Pérez', time: '5 min' },
+                { type: 'product', message: 'Producto "Shampoo Premium" actualizado', time: '15 min' },
+                { type: 'claim', message: 'Reclamo de Ana López resuelto', time: '1 hora' }
+            ];
+            
+            activityList.innerHTML = activities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon ${activity.type}"></div>
+                    <div class="activity-content">
+                        <p>${activity.message}</p>
+                        <span class="activity-time">hace ${activity.time}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function initializeCharts() {
+            // Simple chart implementation
+            const salesChart = document.getElementById('salesChart');
+            const categoryChart = document.getElementById('categoryChart');
+            
+            // For demo purposes, we'll create simple visual charts
+            // In a real implementation, you'd use Chart.js or similar
+            salesChart.innerHTML = '<div class="simple-chart">📈 Gráfico de Ventas por Mes</div>';
+            categoryChart.innerHTML = '<div class="simple-chart">🥧 Distribución por Categorías</div>';
+        }
+        
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-ES', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            }).format(amount);
+        }
+        
+        function showToast(message, type) {
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type} show`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
